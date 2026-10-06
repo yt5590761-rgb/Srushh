@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f3ef">
+    <title>Something I Wanted To Tell You ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background animation -->
+    <div id="backgroundEffects"></div>
+
+    <main class="website">
+
+        <!-- =========================
+             SCREEN 1 — OPENING
+        ========================== -->
+        <section class="screen active" id="screen1">
+
+            <div class="story-card opening-card">
+
+                <div class="small-label">PLEASE READ THIS FIRST</div>
+
+                <h1>
+                    Before you continue… ❤️
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    I made this because there are some things I wanted to
+                    tell you, but I didn't really know how to say them
+                    properly in person.
+                </p>
+
+                <p>
+                    This isn't meant to put any pressure on you.
+                    You can be completely honest with me.
+                </p>
+
+                <p class="soft-text">
+                    Whatever you feel, I'll respect it.
+                </p>
+
+                <button class="primary-btn" onclick="nextScreen('screen2')">
+                    I understand — Continue
+                    <span>♡</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 2 — YOUR FEELINGS
+        ========================== -->
+        <section class="screen" id="screen2">
+
+            <div class="story-card">
+
+                <div class="small-label">A LITTLE SOMETHING FROM ME</div>
+
+                <h1>
+                    I want to tell you something honestly.
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    I don't know if you ever noticed me the way I noticed you.
+                    Maybe you didn't.
+                </p>
+
+                <p>
+                    But somewhere along the way, I started liking you.
+                    I didn't plan it, and I didn't really know what to do
+                    with that feeling.
+                </p>
+
+                <p>
+                    I just kept it with me for a long time.
+                </p>
+
+                <p>
+                    So instead of trying to say everything suddenly,
+                    I made this little website.
+                </p>
+
+                <p class="highlight-text">
+                    I just wanted you to know what was honestly in my mind.
+                    ❤️
+                </p>
+
+                <button class="primary-btn" onclick="nextScreen('screen3')">
+                    Continue
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 3 — MAIN QUESTION
+        ========================== -->
+        <section class="screen" id="screen3">
+
+            <div class="story-card question-card">
+
+                <div class="small-label">ONE HONEST QUESTION</div>
+
+                <h1>
+                    Can I ask you something?
+                </h1>
+
+                <div class="divider"></div>
+
+                <p class="main-question">
+                    Do you have someone special in your life?
+                </p>
+
+                <p class="question-note">
+                    You can answer honestly. There is no wrong answer.
+                </p>
+
+                <div class="choice-grid">
+
+                    <button class="choice-btn"
+                            onclick="chooseOption('someone')">
+                        <span>Yes</span>
+                        <small>I have someone</small>
+                    </button>
+
+                    <button class="choice-btn"
+                            onclick="chooseOption('noone')">
+                        <span>No</span>
+                        <small>Not right now</small>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 4 — SECOND CHOICE
+        ========================== -->
+        <section class="screen" id="screen4">
+
+            <div class="story-card">
+
+                <div class="small-label">I UNDERSTAND</div>
+
+                <h1>
+                    Can I ask one more thing?
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    You don't have to explain anything you don't want to.
+                    I just want to understand you a little better.
+                </p>
+
+                <p class="main-question">
+                    Why don't you have someone special right now?
+                </p>
+
+                <div class="option-list">
+
+                    <button class="text-choice"
+                            onclick="chooseOption('not-interested')">
+                        <span>I'm not interested in love</span>
+                        <b>→</b>
+                    </button>
+
+                    <button class="text-choice"
+                            onclick="chooseOption('past-love')">
+                        <span>I had a past love</span>
+                        <b>→</b>
+                    </button>
+
+                    <button class="text-choice"
+                            onclick="chooseOption('like-someone')">
+                        <span>I already like someone</span>
+                        <b>→</b>
+                    </button>
+
+                    <button class="text-choice"
+                            onclick="chooseOption('other')">
+                        <span>There is another reason</span>
+                        <b>→</b>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 5 — DYNAMIC RESPONSE
+        ========================== -->
+        <section class="screen" id="screen5">
+
+            <div class="story-card response-card">
+
+                <div class="response-symbol" id="responseSymbol">
+                    ❤️
+                </div>
+
+                <div class="small-label" id="responseLabel">
+                    JUST BEING HONEST
+                </div>
+
+                <h1 id="responseTitle">
+                    Thank you for telling me.
+                </h1>
+
+                <div class="divider"></div>
+
+                <div id="responseText"></div>
+
+                <div id="friendshipArea" class="hidden">
+
+                    <p class="main-question">
+                        Maybe we can simply start as friends?
+                    </p>
+
+                    <p class="question-note">
+                        No expectations. No pressure. Just friendship.
+                    </p>
+
+                    <div class="choice-grid">
+
+                        <button class="choice-btn positive"
+                                onclick="friendshipAnswer(true)">
+                            <span>Yes ❤️</span>
+                            <small>We can be friends</small>
+                        </button>
+
+                        <button class="choice-btn negative"
+                                onclick="friendshipAnswer(false)">
+                            <span>No</span>
+                            <small>I'd rather not</small>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="whatsappArea" class="hidden">
+
+                    <button class="primary-btn"
+                            onclick="openWhatsApp()">
+                        Tell me honestly
+                        <span>💬</span>
+                    </button>
+
+                </div>
+
+                <button id="continueResponseBtn"
+                        class="primary-btn hidden"
+                        onclick="nextScreen('screen6')">
+                    Continue
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 6 — MORE INFORMATION
+        ========================== -->
+        <section class="screen" id="screen6">
+
+            <div class="story-card">
+
+                <div class="small-label">ONE LAST THING</div>
+
+                <h1>
+                    There is something else I want you to know.
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    I didn't put everything I feel into the first few pages.
+                    There are some things that are easier for me to explain
+                    in my own language.
+                </p>
+
+                <p>
+                    If you genuinely want to know more about me and
+                    why I made this, you can open the final message.
+                </p>
+
+                <button class="primary-btn"
+                        onclick="nextScreen('screen7')">
+                    More Information
+                    <span>♡</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 7 — PASSWORD
+        ========================== -->
+        <section class="screen" id="screen7">
+
+            <div class="story-card password-card">
+
+                <div class="lock-icon">🔐</div>
+
+                <div class="small-label">A PERSONAL MESSAGE</div>
+
+                <h1>
+                    Would you like to know more about me?
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    There is a final message I wrote especially for you.
+                </p>
+
+                <p>
+                    If you want to read it, enter the password.
+                </p>
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Enter Password"
+                    autocomplete="off"
+                >
+
+                <p id="passwordError" class="password-error"></p>
+
+                <button class="primary-btn"
+                        onclick="unlockFinalMessage()">
+                    Unlock
+                    <span>♡</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SCREEN 8 — FINAL KANNADA
+        ========================== -->
+        <section class="screen kannada-screen" id="screen8">
+
+            <div class="story-card final-card">
+
+                <div class="small-label">
+                    ನಿನಗಾಗಿ ಒಂದು ಮಾತು
+                </div>
+
+                <h1>
+                    ನನ್ನ ಮನಸ್ಸಿನ ಮಾತು ❤️
+                </h1>
+
+                <div class="divider"></div>
+
+                <div class="kannada-text">
+
+                    <p>
+                        ನಾನು ತಿಲಕ್ ಯಲಕರ (ಗಿರಿಮಲ್ಲ).
+                    </p>
+
+                    <p>
+                        ಬಹುಶಃ ನನ್ನ ಬಗ್ಗೆ ನಿನಗೆ ಅಷ್ಟೊಂದು ನೆನಪಿರದೇ ಇರಬಹುದು.
+                        ನಾವು ಒಂದೇ ಕಂಪ್ಯೂಟರ್ ಕ್ಲಾಸ್‌ನಲ್ಲಿ ಪಾರ್ಟ್ನರ್ಸ್ ಆಗಿದ್ದೆವು.
+                        ಆದರೆ ನಿನ್ನ ಬಗ್ಗೆ ನನಗೆ ನೆನಪಿರುವ ಕೆಲವು ವಿಷಯಗಳು ಮಾತ್ರ
+                        ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿ ತುಂಬಾ ದಿನಗಳಿಂದ ಉಳಿದಿವೆ.
+                    </p>
+
+                    <p>
+                        ನಿನ್ನನ್ನು ನಾನು ಯಾವಾಗ ಇಷ್ಟಪಡಲು ಶುರು ಮಾಡಿದೆ
+                        ಅನ್ನೋದು ನನಗೂ ಸರಿಯಾಗಿ ಗೊತ್ತಿಲ್ಲ.
+                        ಆದರೆ ಒಂದು ಸಮಯದ ನಂತರ ನೀನು ನನಗೆ
+                        ಸಾಮಾನ್ಯ ವ್ಯಕ್ತಿಯಾಗಿ ಉಳಿಯಲಿಲ್ಲ.
+                    </p>
+
+                    <p>
+                        ನಾನು ಈ ಮಾತನ್ನು ನಿನಗೆ ಹೇಳಬೇಕು ಅಂತ ತುಂಬಾ ಸಲ
+                        ಅಂದುಕೊಂಡಿದ್ದೆ. ಆದರೆ ಎದುರಿಗೆ ಹೇಳಲು ನನಗೆ
+                        ಧೈರ್ಯವಾಗಲಿಲ್ಲ.
+                    </p>
+
+                    <p>
+                        ಅದಕ್ಕಾಗಿಯೇ ಈ ವೆಬ್‌ಸೈಟ್ ಮಾಡಿದ್ದೇನೆ.
+                        ಇದರಲ್ಲಿ ದೊಡ್ಡ ದೊಡ್ಡ ಮಾತುಗಳಿಲ್ಲ.
+                        ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿ ಇದ್ದದ್ದನ್ನು ನಿನಗೆ
+                        ಪ್ರಾಮಾಣಿಕವಾಗಿ ಅರ್ಥವಾಗಬೇಕು ಅನ್ನೋದೇ ನನ್ನ ಉದ್ದೇಶ.
+                    </p>
+
+                    <p>
+                        ನೀನು ನನ್ನನ್ನು ಅದೇ ರೀತಿಯಲ್ಲಿ ಇಷ್ಟಪಡುತ್ತೀಯಾ
+                        ಅನ್ನೋದು ನನಗೆ ಗೊತ್ತಿಲ್ಲ.
+                        ಬಹುಶಃ ನಿನ್ನ ಉತ್ತರ ಬೇರೆ ಆಗಿರಬಹುದು.
+                        ಅದಕ್ಕೂ ನಾನು ಸಿದ್ಧನಿದ್ದೇನೆ.
+                    </p>
+
+                    <p class="kannada-highlight">
+                        ನನಗೆ ಬೇಕಾಗಿರುವುದು ನಿನ್ನಿಂದ ಒಂದು ಪ್ರಾಮಾಣಿಕ ಉತ್ತರ.
+                        ನನ್ನನ್ನು ಇಷ್ಟಪಟ್ಟರೂ ಸರಿ, ಇಷ್ಟಪಡದಿದ್ದರೂ ಸರಿ.
+                        ನಿನ್ನ ಮನಸ್ಸಿನಲ್ಲಿ ಏನಿದೆಯೋ ಅದನ್ನೇ ಹೇಳು.
+                    </p>
+
+                    <p>
+                        ನಾನು ನಿನ್ನ ಮೇಲೆ ಯಾವುದೇ ಒತ್ತಡ ಹಾಕಲು ಈ ವೆಬ್‌ಸೈಟ್
+                        ಮಾಡಿಲ್ಲ. ನಿನ್ನ ನಿರ್ಧಾರ ಏನೇ ಇರಲಿ,
+                        ಅದನ್ನು ನಾನು ಗೌರವಿಸುತ್ತೇನೆ.
+                    </p>
+
+                    <p>
+                        ಒಂದು ವೇಳೆ ನನ್ನ ಬಗ್ಗೆ ನಿನಗೆ ಅದೇ ರೀತಿಯ ಭಾವನೆ
+                        ಇಲ್ಲದಿದ್ದರೂ ಪರವಾಗಿಲ್ಲ.
+                        ಕನಿಷ್ಠ ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿ ನಿನ್ನ ಬಗ್ಗೆ ಇದ್ದ
+                        ಈ ಭಾವನೆ ನಿಜವಾಗಿತ್ತು ಅನ್ನೋದನ್ನಾದರೂ
+                        ನೀನು ತಿಳಿದುಕೊಳ್ಳಬೇಕು ಅನ್ನಿಸಿತು.
+                    </p>
+
+                    <p>
+                        ನಾನು ಇದನ್ನೆಲ್ಲ ಹೇಳಿದ ಮೇಲೆ ನೀನು ನನ್ನನ್ನು
+                        ಹೇಗೆ ನೋಡುತ್ತೀಯೋ ನನಗೆ ಗೊತ್ತಿಲ್ಲ.
+                        ಆದರೆ ನಾನು ಇದನ್ನು ಹೇಳಿದ್ದಕ್ಕೆ ಮಾತ್ರ
+                        ಯಾವತ್ತೂ ಬೇಸರಪಡುವುದಿಲ್ಲ.
+                    </p>
+
+                    <p class="final-kannada-line">
+                        ಏಕೆಂದರೆ ಕೆಲವು ಭಾವನೆಗಳನ್ನು ಮನಸ್ಸಿನಲ್ಲಿ
+                        ಇಟ್ಟುಕೊಳ್ಳುವುದಕ್ಕಿಂತ, ಒಮ್ಮೆ ಪ್ರಾಮಾಣಿಕವಾಗಿ
+                        ಹೇಳಿಬಿಡುವುದು ಉತ್ತಮ. ❤️
+                    </p>
+
+                    <div class="signature">
+                        — ತಿಲಕ್ ಯಲಕರ (ಗಿರಿಮಲ್ಲ)
+                    </div>
+
+                </div>
+
+                <button class="primary-btn"
+                        onclick="finishWebsite()">
+                    That's all I wanted to say
+                    <span>♡</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL CLOSING
+        ========================== -->
+        <section class="screen" id="finalScreen">
+
+            <div class="story-card closing-card">
+
+                <div class="closing-symbol">
+                    ❤️
+                </div>
+
+                <h1>
+                    Thank you for reading.
+                </h1>
+
+                <div class="divider"></div>
+
+                <p>
+                    Whatever you feel, I hope you always stay happy.
+                </p>
+
+                <p>
+                    Take care of yourself.
+                </p>
+
+                <p class="closing-small">
+                    — Tilak
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,902 @@
+/* =========================================================
+   PERSONAL STORY WEBSITE
+   PREMIUM CINEMATIC STYLE
+========================================================= */
+
+:root {
+    --ivory: #f8f5f0;
+    --cream: #eee8df;
+    --white: #ffffff;
+    --text: #24201e;
+    --muted: #756d68;
+    --soft: #a69d97;
+    --border: rgba(50, 42, 38, 0.10);
+    --shadow: rgba(40, 31, 26, 0.12);
+    --accent: #9c5d68;
+    --accent-dark: #743f49;
+    --gold: #b18a5b;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.95), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(221,198,185,0.22), transparent 40%),
+        linear-gradient(135deg, #faf8f4, #eee8e1);
+    color: var(--text);
+    font-family: "Inter", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+#backgroundEffects {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+    transition:
+        background 1.2s ease,
+        opacity 1.2s ease;
+}
+
+#backgroundEffects::before {
+    content: "";
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.38);
+    filter: blur(80px);
+    top: -20%;
+    left: -15%;
+}
+
+#backgroundEffects::after {
+    content: "";
+    position: absolute;
+    width: 45vw;
+    height: 45vw;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 50%;
+    background: rgba(185,145,130,0.10);
+    filter: blur(90px);
+    bottom: -20%;
+    right: -15%;
+}
+
+/* =========================================================
+   WEBSITE / SCREEN SYSTEM
+========================================================= */
+
+.website {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px 18px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(25px) scale(0.985);
+
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.75s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+/* =========================================================
+   STORY CARD
+========================================================= */
+
+.story-card {
+    width: min(100%, 540px);
+    max-height: calc(100dvh - 50px);
+
+    overflow-y: auto;
+
+    padding: 42px 30px 34px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.90),
+            rgba(255,250,246,0.72)
+        );
+
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 30px;
+
+    box-shadow:
+        0 30px 80px rgba(49,38,32,0.12),
+        0 8px 25px rgba(49,38,32,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.85);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    text-align: center;
+
+    scrollbar-width: none;
+}
+
+.story-card::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.small-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--soft);
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(36px, 8vw, 58px);
+    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: #292321;
+    margin-bottom: 22px;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #5f5752;
+    margin: 0 auto 17px;
+    max-width: 455px;
+}
+
+.soft-text {
+    color: #8c817b;
+}
+
+.highlight-text {
+    color: #684b50;
+    font-weight: 500;
+}
+
+.main-question {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(27px, 6vw, 37px);
+    line-height: 1.15;
+    color: #302826;
+    font-weight: 500;
+    margin: 25px auto 12px;
+}
+
+.question-note {
+    font-size: 12px;
+    color: #958b85;
+    margin-bottom: 26px;
+}
+
+.divider {
+    width: 44px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(120,90,80,0.55),
+        transparent
+    );
+    margin: 0 auto 25px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.primary-btn {
+    position: relative;
+    width: 100%;
+    max-width: 330px;
+
+    margin: 18px auto 0;
+    padding: 16px 22px;
+
+    border: 1px solid rgba(120,90,80,0.16);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b4545,
+            #7d535c
+        );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        0 12px 28px rgba(90,60,60,0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.primary-btn span {
+    margin-left: 8px;
+    opacity: 0.85;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 17px 32px rgba(90,60,60,0.22);
+}
+
+.primary-btn:active {
+    transform: scale(0.97);
+}
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 410px;
+
+    margin: 25px auto 0;
+}
+
+.choice-btn {
+    min-height: 88px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.66);
+
+    color: #332d2a;
+
+    box-shadow: 0 8px 20px rgba(50,40,35,0.05);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.choice-btn span {
+    display: block;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.choice-btn small {
+    display: block;
+    color: #938883;
+    font-size: 10px;
+}
+
+.choice-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 14px 28px rgba(50,40,35,0.09);
+}
+
+.choice-btn:active {
+    transform: scale(0.97);
+}
+
+.choice-btn.positive {
+    border-color: rgba(156,93,104,0.22);
+}
+
+.choice-btn.negative {
+    border-color: rgba(100,100,100,0.14);
+}
+
+/* =========================================================
+   OPTION LIST
+========================================================= */
+
+.option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 440px;
+
+    margin: 24px auto 0;
+}
+
+.text-choice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 17px 18px;
+
+    border: 1px solid rgba(55,45,40,0.09);
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.62);
+
+    color: #433b37;
+    text-align: left;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.text-choice span {
+    font-size: 13px;
+}
+
+.text-choice b {
+    color: #9c8880;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.text-choice:hover {
+    transform: translateX(4px);
+    background: rgba(255,255,255,0.9);
+    border-color: rgba(130,100,90,0.18);
+}
+
+/* =========================================================
+   RESPONSE
+========================================================= */
+
+.response-symbol {
+    width: 66px;
+    height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.65);
+
+    box-shadow:
+        0 10px 30px rgba(70,50,45,0.08);
+
+    font-size: 27px;
+}
+
+#responseText {
+    margin-bottom: 10px;
+}
+
+#responseText p {
+    margin-bottom: 16px;
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.lock-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.password-card {
+    max-width: 480px;
+}
+
+#passwordInput {
+    display: block;
+
+    width: 100%;
+    max-width: 330px;
+
+    margin: 25px auto 8px;
+    padding: 15px 17px;
+
+    border: 1px solid rgba(80,65,60,0.15);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.75);
+
+    color: #332c29;
+
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#passwordInput::placeholder {
+    color: #aaa09a;
+}
+
+#passwordInput:focus {
+    border-color: rgba(140,90,95,0.42);
+
+    box-shadow:
+        0 0 0 4px rgba(140,90,95,0.07);
+}
+
+.password-error {
+    min-height: 18px;
+
+    color: #a44f5b;
+    font-size: 12px;
+
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   KANNADA FINAL PAGE
+========================================================= */
+
+.kannada-screen {
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,245,221,0.40),
+            transparent 45%
+        );
+}
+
+.kannada-screen .story-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,253,248,0.94),
+            rgba(247,239,227,0.82)
+        );
+}
+
+.kannada-screen h1 {
+    font-family: "Noto Serif Kannada", "Nirmala UI", serif;
+}
+
+.kannada-text {
+    text-align: left;
+    padding: 4px 2px;
+}
+
+.kannada-text p {
+    font-family:
+        "Noto Serif Kannada",
+        "Nirmala UI",
+        "Tunga",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 2;
+
+    color: #514944;
+
+    margin-bottom: 20px;
+}
+
+.kannada-highlight {
+    padding: 17px 16px;
+
+    border-left: 2px solid rgba(156,93,104,0.45);
+
+    background: rgba(255,255,255,0.40);
+
+    border-radius: 0 12px 12px 0;
+}
+
+.final-kannada-line {
+    font-weight: 600;
+    color: #60464a !important;
+}
+
+.signature {
+    margin-top: 28px;
+    margin-bottom: 10px;
+
+    text-align: right;
+
+    font-family:
+        "Noto Serif Kannada",
+        "Nirmala UI",
+        serif;
+
+    color: #765a5d;
+    font-size: 15px;
+}
+
+/* =========================================================
+   FINAL CLOSING
+========================================================= */
+
+.closing-card {
+    max-width: 460px;
+}
+
+.closing-symbol {
+    font-size: 40px;
+    margin-bottom: 20px;
+
+    animation: softPulse 2.5s ease-in-out infinite;
+}
+
+.closing-small {
+    margin-top: 25px;
+    color: #8c817b;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   LOVE MODE
+========================================================= */
+
+body.love-mode #backgroundEffects {
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(190,95,115,0.17),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #faf4f0,
+            #f1dfe0,
+            #f8f2ed
+        );
+}
+
+body.love-mode .story-card {
+    box-shadow:
+        0 35px 90px rgba(120,55,70,0.15),
+        0 10px 28px rgba(100,50,60,0.07);
+}
+
+/* =========================================================
+   SAD MODE
+========================================================= */
+
+body.sad-mode #backgroundEffects {
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(95,110,135,0.13),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #f3f5f6,
+            #e3e7eb,
+            #f4f4f3
+        );
+}
+
+body.sad-mode .story-card {
+    box-shadow:
+        0 30px 80px rgba(60,70,80,0.12),
+        0 8px 25px rgba(50,60,70,0.05);
+}
+
+/* =========================================================
+   FLOATING LOVE PARTICLES
+========================================================= */
+
+.love-particle {
+    position: fixed;
+
+    bottom: -40px;
+
+    font-size: 14px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        loveFloat 4.5s linear forwards;
+}
+
+@keyframes loveFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.7)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.55;
+    }
+
+    70% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform:
+            translateY(-105vh)
+            translateX(var(--drift))
+            scale(1.2)
+            rotate(18deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   SAD PARTICLES
+========================================================= */
+
+.sad-particle {
+    position: fixed;
+
+    top: -20px;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(90,105,120,0.25);
+
+    pointer-events: none;
+
+    animation:
+        sadFall 5s linear forwards;
+}
+
+@keyframes sadFall {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(var(--drift));
+
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes softPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes cardEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen.active .story-card {
+    animation: cardEntrance 0.8s ease both;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 18px 13px;
+    }
+
+    .story-card {
+        max-height: calc(100dvh - 30px);
+        padding: 34px 20px 25px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: clamp(34px, 10vw, 46px);
+        margin-bottom: 19px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.78;
+        margin-bottom: 15px;
+    }
+
+    .main-question {
+        font-size: 28px;
+    }
+
+    .small-label {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+        margin-bottom: 15px;
+    }
+
+    .choice-grid {
+        gap: 9px;
+    }
+
+    .choice-btn {
+        min-height: 82px;
+        border-radius: 16px;
+    }
+
+    .choice-btn span {
+        font-size: 21px;
+    }
+
+    .choice-btn small {
+        font-size: 9px;
+    }
+
+    .text-choice {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .text-choice span {
+        font-size: 12px;
+        padding-right: 8px;
+    }
+
+    .primary-btn {
+        padding: 15px 18px;
+    }
+
+    .kannada-text p {
+        font-size: 15px;
+        line-height: 1.95;
+    }
+
+    .signature {
+        font-size: 14px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-height: 700px) {
+
+    .story-card {
+        padding-top: 27px;
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    p {
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    .divider {
+        margin-bottom: 18px;
+    }
+
+    .primary-btn {
+        margin-top: 12px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
